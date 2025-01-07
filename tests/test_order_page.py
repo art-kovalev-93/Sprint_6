@@ -36,7 +36,7 @@ class TestOrderPage:
         main_page.click_order_button_on_header()
         order_page = OrderPage(driver)
         order_page.click_scooter_logo()
-        assert driver.current_url == urls.main_page_url
+        assert main_page.current_url() == urls.base_url
 
     @allure.title('Проверка открытия Dzen страницы через лого Яндекс в хидере')
     def test_open_dzen_by_yandex_logo(self, driver):
@@ -45,7 +45,6 @@ class TestOrderPage:
         main_page.click_order_button_on_header()
         order_page = OrderPage(driver)
         order_page.click_yandex_logo()
-        handles = driver.window_handles
-        driver.switch_to.window(handles[-1])
+        order_page.open_next_tab()
         order_page.wait_dzen_url()
-        assert driver.current_url == urls.dzen_url
+        assert main_page.current_url() == urls.dzen_url

@@ -1,6 +1,5 @@
 import pytest
 import allure
-from selenium import webdriver
 import texts
 import urls
 from pages.main_page import MainPage
@@ -25,12 +24,11 @@ class TestMainPage:
         main_page = MainPage(driver)
         main_page.click_accept_cookie()
         main_page.click_order_button_on_header()
-        assert driver.current_url == urls.order_page_url
+        assert main_page.current_url() == urls.order_page_url
 
     @allure.title('Проверка открытия страницы Заказа через кнопку на странице')
     def test_open_order_page_from_page(self, driver):
         main_page = MainPage(driver)
         main_page.click_accept_cookie()
         main_page.click_order_button_on_page()
-        assert driver.current_url == urls.order_page_url
-
+        assert main_page.current_url() == urls.order_page_url
