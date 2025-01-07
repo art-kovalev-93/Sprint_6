@@ -64,7 +64,7 @@ class OrderPage(BasePage):
 
     @allure.step('Получили текст статуса Заказа')
     def get_status(self):
-        return self.find_element(OrderPageLocators.success_popup_locator).text
+        return self.find_element_get_text(locator=OrderPageLocators.success_popup_locator)
 
     @allure.step('Нажать на лого Самокат в хидере')
     def click_scooter_logo(self):
