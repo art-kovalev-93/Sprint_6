@@ -14,14 +14,14 @@ class BasePage:
     def find_element(self, locator, time = 5):
         return WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator), message=f'Not find element {locator}')
 
-    def click(self, object):
-        return object.click()
+    def click_element(self, locator):
+        return self.find_element(locator=locator).click()
 
-    def click_i_obj(self, objects,i):
-        return objects[i].click()
+    def click_i_obj(self, locator, i):
+        return self.find_elements(locator = locator)[i].click()
 
-    def find_element_get_text(self, locator, time = 5):
-        return WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator), message=f'Not find element {locator}').text
+    def find_element_get_text(self, locator):
+        return self.find_element(locator=locator).text
 
     def find_elements(self, locator, time = 5):
         return WebDriverWait(self.driver, time).until(EC.visibility_of_all_elements_located(locator), message=f'Not find elements {locator}')
@@ -32,8 +32,8 @@ class BasePage:
     def current_url(self):
         return self.driver.current_url
 
-    def send_keys(self, locator, text, time = 5):
-        return WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator), message=f'Not find element {locator}').send_keys(text)
+    def send_keys(self, locator, text):
+        return self.find_element(locator=locator).send_keys(text)
 
     def wait_url_to_be(self, url, time = 5):
         return WebDriverWait(self.driver, time).until(EC.url_to_be(url))

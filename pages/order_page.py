@@ -24,8 +24,8 @@ class OrderPage(BasePage):
 
     @allure.step('Заполнить поле Метро')
     def set_metro(self):
-        self.find_element(OrderPageLocators.metro_locator).click()
-        self.find_element(OrderPageLocators.metro_station_locator).click()
+        self.click_element(OrderPageLocators.metro_locator)
+        self.click_element(OrderPageLocators.metro_station_locator)
 
     @allure.step('Заполнить поле Телефон')
     def set_telephone(self):
@@ -33,21 +33,21 @@ class OrderPage(BasePage):
 
     @allure.step('Заполнить поле Когда привезти самокат')
     def set_delivery_date(self):
-        self.find_element(OrderPageLocators.calendar_locator).click()
-        self.find_element(OrderPageLocators.calendar_date_locator).click()
+        self.click_element(OrderPageLocators.calendar_locator)
+        self.click_element(OrderPageLocators.calendar_date_locator)
 
     @allure.step('Заполнить поле Срок аренды')
     def set_period(self):
-        self.find_element(OrderPageLocators.rent_period_locator).click()
-        self.find_element(OrderPageLocators.rent_period_day_locator).click()
+        self.click_element(OrderPageLocators.rent_period_locator)
+        self.click_element(OrderPageLocators.rent_period_day_locator)
 
     @allure.step('Активировать чекбокс Черный жемчуг')
     def select_black(self):
-        self.find_element(OrderPageLocators.color_black_selector).click()
+        self.click_element(OrderPageLocators.color_black_selector)
 
     @allure.step('Активировать чекбокс Серая безысходность')
     def select_grey(self):
-        self.find_element(OrderPageLocators.color_grey_selector).click()
+        self.click_element(OrderPageLocators.color_grey_selector)
 
     @allure.step('Заполнить комментарий для курьера')
     def set_comment(self):
@@ -55,12 +55,11 @@ class OrderPage(BasePage):
 
     @allure.step('Нажать кнопку заказать')
     def click_order(self):
-        order_btn = self.find_elements(locator=OrderPageLocators.order_button_locator)
-        self.click_i_obj(order_btn, i=1)
+        self.click_i_obj(locator=OrderPageLocators.order_button_locator, i=1)
 
     @allure.step('Нажать кнопку далее')
     def click_next(self):
-        self.find_element(OrderPageLocators.next_button).click()
+        self.click_element(OrderPageLocators.next_button)
 
     @allure.step('Получили текст статуса Заказа')
     def get_status(self):
@@ -68,11 +67,11 @@ class OrderPage(BasePage):
 
     @allure.step('Нажать на лого Самокат в хидере')
     def click_scooter_logo(self):
-        self.find_element(OrderPageLocators.scooter_logo_locator).click()
+        self.click_element(OrderPageLocators.scooter_logo_locator)
 
     @allure.step('Нажать на лого Яндекс в хидере')
     def click_yandex_logo(self):
-        self.find_element(OrderPageLocators.yandex_logo_locator).click()
+        self.click_element(OrderPageLocators.yandex_logo_locator)
 
     @allure.step('Ждем загрузки сайта dzen')
     def wait_dzen_url(self):
@@ -80,4 +79,4 @@ class OrderPage(BasePage):
 
     @allure.step('Нажать на кнопку Подтвердить')
     def click_approve(self):
-        self.find_element(OrderPageLocators.approve_order_locator).click()
+        self.click_element(OrderPageLocators.approve_order_locator)
