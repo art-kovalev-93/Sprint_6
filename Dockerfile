@@ -19,8 +19,6 @@ WORKDIR /app/repo
 # Устанавливаем зависимости Python
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Устанавливаем pytest если его нет в requirements.txt
-RUN pip3 install pytest
 
 # Запускаем тесты
 CMD ["pytest", "-v", "--tb=short"]
