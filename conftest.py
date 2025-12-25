@@ -6,7 +6,7 @@ import urls
 
 @pytest.fixture
 def driver():
-    driver = webdriver.Firefox()
+    driver = webdriver.Chrome()
     driver.maximize_window()
     driver.get(urls.base_url)
     yield driver
