@@ -1,25 +1,21 @@
 import pytest
 from selenium import webdriver
-import urls
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def driver():
-    chrome_options = Options()
+    # Указываем адрес Selenium Hub (в нашем случае это localhost:4444)
+    hub_url = "http://localhost:4444/wd/hub"
 
-    # Опции для Docker среды
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--window-size=1920,1080')
+    # Создаем capabilities для Chrome
+    capabilities = DesiredCapabilities.CHROME.copy()
 
+    # Создаем экземпляр удаленного драйвера
+    driver = webdriver.Remote(command_executor=hub_url, desired_capabilities=capabilities)
 
-    driver = webdriver.Remote(
-        command_executor='http://localhost:4444/wd/hub',
-        options=chrome_options
-    )
-    driver.implicitly_wait(10)
-
+    # Возвращаем драйвер
     yield driver
+
+    # Закрываем драйвер после теста
     driver.quit()
